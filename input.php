@@ -1,7 +1,21 @@
-<?php include 'views/header.php'; ?>
+<?php
+include 'views/header.php';
+
+$petugas = query("SELECT * FROM petugas");
+
+if (isset($_POST['kirim'])) {
+    if (kirimproyeksi($_POST) > 0) {
+        echo "<script>alert('Data berhasil dikirim')</script>";
+    } else {
+        echo "<script>alert('Data berhasil dikirim')</script>";
+        echo mysqli_error($koneksi);
+    }
+}
+
+?>
 <div class="p-4 h-screen">
-    <h2 class="text-2xl text-center mb-6 font-poppins font-bold text-hijau underline">Input Proyeksi</h2>
-    <form class="mx-4">
+    <h2 class="text-2xl text-center mb-6 font-inter font-bold text-hijau underline">Input Proyeksi</h2>
+    <form class="mx-4" method="post">
         <div class="relative z-0 mb-6 w-full group">
             <input type="date" name="tanggal" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-hijau focus:outline-none focus:ring-0 focus:border-hijau peer">
             <label for="tanggal" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-hijau peer-focus:dark:text-hijau peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tanggal</label>
@@ -19,7 +33,9 @@
             <label for="nama" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-hijau peer-focus:dark:text-hijau peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nama</label>
             <select id="countries" name="nama" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-hijau focus:outline-none focus:ring-0 focus:border-hijau peer">
                 <option value=""></option>
-                <option>United States</option>
+                <?php foreach ($petugas as $p) : ?>
+                    <option value="<?= $p['id_petugas']; ?>"><?= $p['nama_petugas']; ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
         <div class="grid xl:grid-cols-2 xl:gap-6">

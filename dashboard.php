@@ -1,6 +1,9 @@
-<?php include 'views/header.php'; ?>
+<?php
+include 'views/header.php';
+$hari = query("SELECT SUM(droping) as droping, pf_droping, SUM(tabungan) as tabungan, pf_tabungan, hari FROM catat GROUP BY hari DESC");
+?>
 <div class="relative top-0 left-0 right-0 h-16 bg-white flex items-center shadow-sm shadow-slate-500">
-    <h1 class="m-2 pl-3 text-hijau text-3xl font-poppins font-bold">Statistik</h1>
+    <h1 class="m-2 pl-3 text-hijau text-3xl font-inter font-bold">Statistik</h1>
 </div>
 <div class="p-4 h-full">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -25,31 +28,31 @@
                 </tr>
             </thead>
             <tbody>
-                <?php for ($i = 1; $i < 5; $i++) : ?>
+                <?php foreach ($hari as $h) : ?>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            Senin
+                            <?= $h['hari']; ?>
                         </th>
                         <td class="px-6 py-4">
-                            2.000.0000
+                            <?= rupiah($h['droping']); ?>
                         </td>
                         <td class="px-6 py-4">
-                            4
+                            <?= $h['pf_droping']; ?>
                         </td>
                         <td class="px-6 py-4">
-                            500.000
+                            <?= $h['tabungan']; ?>
                         </td>
                         <td class="px-6 py-4">
-                            1
+                            <?= $h['pf_tabungan']; ?>
                         </td>
                     </tr>
-                <?php endfor; ?>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>
 
     <div class="shadow-lg rounded-lg overflow-hidden mt-5">
-        <div class="py-3 px-5 bg-gray-50">Doughnut chart</div>
+        <div class="py-3 px-5 bg-gray-50">Statistik Hari</div>
         <canvas class="p-10" id="chartDoughnut"></canvas>
     </div>
 
@@ -57,16 +60,29 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Chart doughnut -->
+    <?php
+    $senin = query("SELECT SUM(droping) AS droping FROM catat WHERE hari='Senin'")[0]['droping'];
+    $selasa = query("SELECT SUM(droping) AS droping FROM catat WHERE hari='Selasa'")[0]['droping'];
+    $rabu = query("SELECT SUM(droping) AS droping FROM catat WHERE hari='Rabu'")[0]['droping'];
+    $kamis = query("SELECT SUM(droping) AS droping FROM catat WHERE hari='Kamis'")[0]['droping'];
+
+    ?>
     <script>
         const dataDoughnut = {
-            labels: ["JavaScript", "Python", "Ruby"],
+            labels: ["Senin", "Selasa", "Rabu", "Kamis"],
             datasets: [{
                 label: "My First Dataset",
-                data: [300, 50, 100],
+                data: [
+                    <?= $senin; ?>,
+                    <?= $selasa; ?>,
+                    <?= $rabu; ?>,
+                    <?= $kamis; ?>,
+                ],
                 backgroundColor: [
                     "rgb(133, 105, 241)",
                     "rgb(164, 101, 241)",
                     "rgb(101, 143, 241)",
+                    "rgb(01, 143, 241)",
                 ],
                 hoverOffset: 4,
             }, ],
