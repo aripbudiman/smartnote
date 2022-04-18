@@ -52,7 +52,7 @@ $hari = query("SELECT SUM(droping) as droping, pf_droping, SUM(tabungan) as tabu
     </div>
 
     <div class="shadow-lg rounded-lg overflow-hidden mt-5">
-        <div class="py-3 px-5 bg-gray-50">Doughnut chart</div>
+        <div class="py-3 px-5 bg-gray-50">Statistik Hari</div>
         <canvas class="p-10" id="chartDoughnut"></canvas>
     </div>
 
@@ -60,16 +60,29 @@ $hari = query("SELECT SUM(droping) as droping, pf_droping, SUM(tabungan) as tabu
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Chart doughnut -->
+    <?php
+    $senin = query("SELECT SUM(droping) AS droping FROM catat WHERE hari='Senin'")[0]['droping'];
+    $selasa = query("SELECT SUM(droping) AS droping FROM catat WHERE hari='Selasa'")[0]['droping'];
+    $rabu = query("SELECT SUM(droping) AS droping FROM catat WHERE hari='Rabu'")[0]['droping'];
+    $kamis = query("SELECT SUM(droping) AS droping FROM catat WHERE hari='Kamis'")[0]['droping'];
+
+    ?>
     <script>
         const dataDoughnut = {
-            labels: ["JavaScript", "Python", "Ruby"],
+            labels: ["Senin", "Selasa", "Rabu", "Kamis"],
             datasets: [{
                 label: "My First Dataset",
-                data: [300, 50, 100],
+                data: [
+                    <?= $senin; ?>,
+                    <?= $selasa; ?>,
+                    <?= $rabu; ?>,
+                    <?= $kamis; ?>,
+                ],
                 backgroundColor: [
                     "rgb(133, 105, 241)",
                     "rgb(164, 101, 241)",
                     "rgb(101, 143, 241)",
+                    "rgb(01, 143, 241)",
                 ],
                 hoverOffset: 4,
             }, ],

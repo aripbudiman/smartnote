@@ -31,7 +31,12 @@ function kirimproyeksi($data)
     $tabungan = $data['tabungan'];
     $pf_tabungan = $data['pf_tabungan'];
 
+<<<<<<< HEAD
     $sql = "INSERT INTO catat VALUES('', '$tanggal', '$hari', $nama, $droping, $pf_droping, $tabungan, $pf_tabungan)";
     mysqli_query($koneksi, $sql);
+=======
+    $query = "INSERT INTO catat VALUES('', '$tanggal', '$hari', $nama, $droping, $pf_droping, $tabungan, $pf_tabungan,current_timestamp())";
+    mysqli_query($koneksi, $query);
+>>>>>>> aaf2d9b0c7e037a217319cac927284f6b50511da
     return mysqli_affected_rows($koneksi);
 }
