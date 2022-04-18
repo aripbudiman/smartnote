@@ -1,6 +1,9 @@
-<?php include 'views/header.php'; ?>
+<?php
+include 'views/header.php';
+$hari = query("SELECT SUM(droping) as droping, pf_droping, SUM(tabungan) as tabungan, pf_tabungan, hari FROM catat GROUP BY hari DESC");
+?>
 <div class="relative top-0 left-0 right-0 h-16 bg-white flex items-center shadow-sm shadow-slate-500">
-    <h1 class="m-2 pl-3 text-hijau text-3xl font-poppins font-bold">Statistik</h1>
+    <h1 class="m-2 pl-3 text-hijau text-3xl font-inter font-bold">Statistik</h1>
 </div>
 <div class="p-4 h-full">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -25,25 +28,25 @@
                 </tr>
             </thead>
             <tbody>
-                <?php for ($i = 1; $i < 5; $i++) : ?>
+                <?php foreach ($hari as $h) : ?>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                            Senin
+                            <?= $h['hari']; ?>
                         </th>
                         <td class="px-6 py-4">
-                            2.000.0000
+                            <?= rupiah($h['droping']); ?>
                         </td>
                         <td class="px-6 py-4">
-                            4
+                            <?= $h['pf_droping']; ?>
                         </td>
                         <td class="px-6 py-4">
-                            500.000
+                            <?= $h['tabungan']; ?>
                         </td>
                         <td class="px-6 py-4">
-                            1
+                            <?= $h['pf_tabungan']; ?>
                         </td>
                     </tr>
-                <?php endfor; ?>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>
