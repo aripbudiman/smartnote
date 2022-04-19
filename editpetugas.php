@@ -29,6 +29,10 @@ $user = query("SELECT * FROM petugas JOIN warna ON petugas.card_warna = warna.id
                 <option value="<?= $w['id_warna']; ?>"><?= $w['warna']; ?></option>
             <?php endforeach; ?>
         </select>
-
+        <div>
+            <button type="submit" name="update-user" class="p-2 bg-hijau rounded my-3 w-40">
+                Proses
+            </button>
+        </div>
     </div>
 </div>
