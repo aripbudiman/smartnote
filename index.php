@@ -40,11 +40,7 @@ $cards = query("SELECT * FROM petugas  INNER JOIN warna ON petugas.card_warna = 
                 <li class="py-3 sm:py-4">
                     <div class="flex items-center space-x-4">
                         <div class="flex-shrink-0">
-<<<<<<< HEAD
-                            <img class="w-8 h-8 rounded-full" src="images/<?= $c['img']; ?>" alt="Neil image">
-=======
                             <img class="w-8 h-8 rounded-full" src="images/<?= $c['img']; ?>" alt="<?= $c['img']; ?>">
->>>>>>> aaf2d9b0c7e037a217319cac927284f6b50511da
                         </div>
                         <div class="flex-1 min-w-0">
                             <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
