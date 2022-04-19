@@ -6,11 +6,11 @@ $cards = query("SELECT * FROM petugas  INNER JOIN warna ON petugas.card_warna = 
 ?>
 
 <!-- batas kode php -->
-<header class="flex justify-between h-16 px-3 py-2 mb-4 bg-white fixed z-10 top-0 right-0 left-0 shadow-sm shadow-slate-500 items-center">
+<header class="flex justify-between lg:sticky lg:mx-auto h-16 px-3 py-2 mb-4 bg-white fixed z-10 top-0 right-0 left-0 shadow-sm shadow-slate-500 items-center">
     <h2 class="text-2xl font-inter text-hijau font-bold">Home Page</h2>
     <img src="images/arip.jpg" class="w-10 h-10 rounded-full">
 </header>
-<div class="card-wrapper px-4 mb-5 pt-20 swiper mySwiper">
+<div class="card-wrapper px-4 mb-5 pt-20 swiper mySwiper lg:w-72">
     <div class="swiper-wrapper">
         <?php foreach ($cards as $card) : ?>
             <div class="swiper-slide mx-auto my-3 w-72 h-40 bg-<?= $card['warna'] ?> rounded-lg shadow-md shadow-black relative overflow-hidden">

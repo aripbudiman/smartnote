@@ -1,5 +1,5 @@
 <footer>
-    <div class="h-16 w-full bg-kuning fixed z-10 bottom-0 flex justify-between items-center py-3 px-6">
+    <div class="h-16 w-full bg-kuning lg:sticky fixed z-10 bottom-0 flex justify-between items-center py-3 px-6">
         <div>
             <a href="index.php"><i class="fa-solid fa-house text-2xl text-white"></i></a>
         </div>
