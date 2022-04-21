@@ -36,3 +36,20 @@ function kirimproyeksi($data)
     mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi);
 }
+
+
+function update($data)
+{
+    global $koneksi;
+    $id = $data['id_petugas'];
+    $nik = $data['nik'];
+    $nama_petugas = $data['nama_petugas'];
+    $foto = $data['img'];
+    $warna = $data['card_warna'];
+
+    $result = "UPDATE petugas SET nik='$nik', nama_petugas='$nama_petugas', img='$foto',card_warna=$warna, creat_at=current_timestamp() WHERE id_petugas=$id";
+
+    mysqli_query($koneksi, $result);
+
+    return mysqli_affected_rows($koneksi);
+}

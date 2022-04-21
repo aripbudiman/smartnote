@@ -1,6 +1,9 @@
 <?php
 include 'views/header.php';
+
 $petugas = query("SELECT * FROM petugas JOIN warna ON petugas.card_warna = warna.id_warna");
+
+
 ?>
 
 

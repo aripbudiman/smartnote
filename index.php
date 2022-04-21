@@ -35,7 +35,7 @@ $cards = query("SELECT * FROM petugas  INNER JOIN warna ON petugas.card_warna = 
         </a>
     </div>
     <div class="flow-root">
-        <ul role="list" class="divide-y divide-gray-200 h-82 dark:divide-gray-700 overflow-scroll">
+        <ul role="list" class="divide-y divide-gray-200 h-80 dark:divide-gray-700 overflow-scroll">
             <?php foreach ($catat as $c) : ?>
                 <li class="py-3 sm:py-4">
                     <div class="flex items-center space-x-4">
