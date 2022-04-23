@@ -42,3 +42,15 @@ function formatTanggal($date)
     // ubah string menjadi format tanggal
     return date('d-m-Y', strtotime($date));
 }
+
+function pdf($dari, $sampai)
+{
+    global $koneksi;
+    $sql = "SELECT hari,SUM(droping) AS droping,sum(pf_droping) as pf_droping, SUM(tabungan) AS tabungan, sum(pf_tabungan) as pf_tabungan FROM catat WHERE tanggal BETWEEN '$dari' AND '$sampai' GROUP BY hari desc";
+    $query = mysqli_query($koneksi, $sql);
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($query)) {
+        $rows[] = $row;
+    }
+    return $rows;
+}
