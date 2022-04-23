@@ -7,18 +7,28 @@ if (isset($_POST['update'])) {
     $foto = $_FILES['img']['name'];
     $file_temp = $_FILES['img']['tmp_name'];
     move_uploaded_file($file_temp, 'images/' . $foto);
-    if (update($_POST) > 0) {
+    $id = $_POST['id_petugas'];
+    $nik = $_POST['nik'];
+    $namapetugas = $_POST['nama_petugas'];
+    $warna = $_POST['card_warna'];
+    $sql = "UPDATE petugas SET nik='$nik', nama_petugas='$namapetugas', img='$foto', card_warna=$warna WHERE id_petugas=$id ";
+
+    $result = mysqli_query($koneksi, $sql);
+    if (mysqli_affected_rows($koneksi) > 0) {
         echo "<script>
-        alert('Data berhasil di update!')
+        alert('Data berhasil di update')
         document.location.href='edituser.php'
         </script>";
     } else {
-        echo mysqli_error($koneksi);
+        echo "<script>
+        alert('Data gagal di update')
+        mysqli_error($koneksi)
+        </script>";
     }
 }
 ?>
 <div class="bg-kuning h-screen">
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <div class="h-16 bg-white shadow-sm shadow-black/40 flex items-center">
             <h1 class="text-3xl text-hijau pl-3 font-bold font-inter">Edit User</h1>
         </div>
@@ -39,7 +49,7 @@ if (isset($_POST['update'])) {
             </div>
             <div>
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="user_avatar">Foto</label>
-                <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" name="img" id="user_avatar" type="file">
+                <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" name="img" id="user_avatar" type="file" value="<?= $user['img']; ?>">
             </div>
             <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Pilih warna kartu</label>
             <select id="countries" name="card_warna" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

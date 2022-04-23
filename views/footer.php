@@ -7,6 +7,9 @@
             <a href="input.php"><i class="fa-solid fa-pen text-2xl text-white"></i></a>
         </div>
         <div>
+            <a href="laporan.php"><i class="fa-solid fa-file-pdf text-2xl text-white"></i></a>
+        </div>
+        <div>
             <a href="dashboard.php"><i class="fa-solid fa-chart-line text-2xl text-white"></i></a>
         </div>
         <div>
