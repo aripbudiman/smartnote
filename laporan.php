@@ -4,13 +4,22 @@ include 'views/header.php';
 if (isset($_POST['tampilkan'])) {
     $dari = $_POST['dari'];
     $sampai = $_POST['sampai'];
-    $tampil = query("SELECT hari,SUM(droping) AS droping,sum(pf_droping) as pf_droping, SUM(tabungan) AS tabungan, sum(pf_tabungan) as pf_tabungan FROM catat WHERE tanggal BETWEEN '$dari' AND '$sampai' GROUP BY hari desc");
-    $total = query("SELECT sum(droping) AS totaldroping,sum(pf_droping) as totalpfdroping, sum(tabungan) as totaltabungan,sum(pf_tabungan) as totalpftabungan FROM catat WHERE tanggal BETWEEN '$dari' AND '$sampai'")[0];
+    $tampil = query("SELECT hari,SUM(droping) AS droping,
+    sum(pf_droping) as pf_droping, SUM(tabungan) AS tabungan, 
+    sum(pf_tabungan) as pf_tabungan FROM catat WHERE tanggal
+     BETWEEN '$dari' AND '$sampai' GROUP BY hari desc");
+    $total = query("SELECT sum(droping) AS totaldroping,
+    sum(pf_droping) as totalpfdroping, 
+    sum(tabungan) as totaltabungan,
+    sum(pf_tabungan) as totalpftabungan FROM catat WHERE tanggal
+     BETWEEN '$dari' AND '$sampai'")[0];
 }
 if (isset($_POST['pdf'])) {
     $dari = $_POST['dari'];
     $sampai = $_POST['sampai'];
-    echo "<script>document.location.href='pdf.php?dari=$dari&&sampai=$sampai'</script>";
+    echo "<script>
+    document.location.href='pdf.php?dari=$dari&&sampai=$sampai'
+    </script>";
 }
 
 
@@ -29,7 +38,7 @@ if (isset($_POST['pdf'])) {
         </div>
         <div class="flex flex-wrap px-3 py-3">
             <button class="mx-3 p-3 bg-kuning h-10 item leading-4 rounded-md text-white font-semibold" type="submit" name="tampilkan">Tampilkan</button>
-            <button class="mx-3 p-3 bg-hijau h-10 item leading-4 rounded-md text-white font-semibold" type="submit" name="pdf" target="_blank">PDF</button>
+            <button class="mx-3 p-3 bg-hijau h-10 item leading-4 rounded-md text-white font-semibold" type="submit" name="pdf">PDF</button>
 
         </div>
     </form>
