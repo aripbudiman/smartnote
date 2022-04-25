@@ -7,12 +7,12 @@ if (isset($_POST['tampilkan'])) {
     $tampil = query("SELECT hari,SUM(droping) AS droping,
     sum(pf_droping) as pf_droping, SUM(tabungan) AS tabungan, 
     sum(pf_tabungan) as pf_tabungan FROM catat WHERE tanggal
-     BETWEEN '$dari' AND '$sampai' GROUP BY hari desc");
+    BETWEEN '$dari' AND '$sampai' GROUP BY hari desc");
     $total = query("SELECT sum(droping) AS totaldroping,
     sum(pf_droping) as totalpfdroping, 
     sum(tabungan) as totaltabungan,
     sum(pf_tabungan) as totalpftabungan FROM catat WHERE tanggal
-     BETWEEN '$dari' AND '$sampai'")[0];
+    BETWEEN '$dari' AND '$sampai'")[0];
 }
 if (isset($_POST['pdf'])) {
     $dari = $_POST['dari'];
@@ -25,7 +25,7 @@ if (isset($_POST['pdf'])) {
 
 ?>
 
-<div>
+<div class="pt-20">
     <div>
         <h1 class="text-center text-2xl font-bold py-3">Laporan proyeksi cabang manonjaya</h1>
     </div>

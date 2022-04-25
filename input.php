@@ -13,7 +13,7 @@ if (isset($_POST['kirim'])) {
 }
 
 ?>
-<div class="p-4 h-screen">
+<div class="pt-20 px-5 h-screen">
     <h2 class="text-2xl text-center mb-6 font-inter font-bold text-hijau underline">Input Proyeksi</h2>
     <form class="mx-4" method="post">
         <div class="relative z-0 mb-6 w-full group">

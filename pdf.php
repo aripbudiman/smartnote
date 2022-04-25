@@ -33,7 +33,7 @@ $html = '<!doctype html>
 </head>
 
 <body class="bg-mab lg:w-1/3">
-<h2 class="judul">Laporan Droping Periode: ' . $dari . ' s/d ' . $sampai . '</h2>
+<h2 class="judul">Laporan Proyeksi Droping Cabang Manonjaya Periode: ' . formatTanggal($dari) . ' s/d ' . formatTanggal($sampai) . '</h2>
 <table class="px-3">
 <thead>
     <tr>

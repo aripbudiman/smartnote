@@ -2,7 +2,6 @@
 $koneksi = mysqli_connect("localhost", "root", "", "proyeksi");
 
 
-
 function query($data)
 {
     global $koneksi;
